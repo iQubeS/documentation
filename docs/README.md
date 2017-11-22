@@ -48,6 +48,13 @@ config.plotAreaClick = function (e) {
 }
 ```
 
+It's possible to have more `FilterField`s. Just put a `-` in between. For example:
+
+```js
+var filter = 'FilterField1=Department-FilterValue1=' + department
+            + '-FilterField2=Customer-FilterValue2=' + customer;
+```
+
 * The `e` parameter of the functions are the event `object`s  and contain information about the event, such as the value or category of the clicked `element`. 
 
 * `wpid` is the webpart ID of the listview webpart. It is stored in the `window` `object`.
