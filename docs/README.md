@@ -94,7 +94,18 @@ config.series[0].data.color = '#f1c40f';
 
 # **Sharepoint ( ͡° ͜ʖ ͡°)**
 
-> Just Sharepoint things...
+## Setting up theme for new site
+
+* Open `styles/custom.css` and replace the primary and/r secondary color codes.
+
+* Replace `images/logo.png` with said companies logo.
+
+* Replace iQubeS logo on `settings/iQubeSImages/QHSE.png` with said companies logo
+
+* Replace slideshow images in `settings/RollingPictures`. Changing number of pictures is done on master page.
+
+
+## Testing
 
 And some random JavaScript `codaroni` for the road:
 
