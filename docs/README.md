@@ -61,7 +61,9 @@ var filter = 'FilterField1=Department-FilterValue1=' + department
 
 * `encodeURIComponent()` encodes UTF-8 characters. [encodeURIComponent on MDN web docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent)
 
-## Color theme
+## Styling
+
+### Color theme
 
 The color theme for a chart can be changed in the *__Advanced tab__* in the *__Dashboard tab__* by setting the `config.seriesColors` to an `array` of [CSS colors](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value)
 
@@ -90,6 +92,66 @@ To set a certain data item's color:
  ```js
 config.series[0].colorField = 'color'; 
 config.series[0].data.color = '#f1c40f'; 
+```
+
+### Gridline colors
+
+I like making the gridlines a bit lighter.
+
+```js
+config.valueAxis.majorGridLines.color = '#eaeaea';
+```
+
+# **SPForms**
+
+## Tooltips
+
+Tooltips using the [jQuery tooltip plugin](https://jqueryui.com/tooltip/).
+
+Set up a tooltip in the HTML:
+
+```html
+<div id="id" class="tooltip" title="title">
+	<span class="ui-icon ui-icon-help"></span>
+</div>
+```
+
+A nice base style for a tooltip:
+
+```css
+.tooltip {
+	background-color: #e5e5e5;
+	user-select: none;
+	border-radius: 50%;
+	float: left;
+}
+
+.tooltip > span {
+	user-select: none;
+}
+
+.ui-tooltip {
+	border: none;
+	border-radius: 2px;
+	box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.2);
+	padding: .5rem;
+}
+```
+
+Initialize the tooltip like this:
+
+```js
+$(function () {
+    $('#id').tooltip({
+        content: '<h1>Whatever HTML in here</h1>,
+        position: {
+            my: 'left center',
+            at: 'right center'
+        },
+        show: { duration: 100 },
+        hide: { duration: 100 }
+    });
+});
 ```
 
 # **Sharepoint ( ͡° ͜ʖ ͡°)**
