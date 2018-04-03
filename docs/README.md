@@ -102,7 +102,26 @@ I like making the gridlines a bit lighter.
 config.valueAxis.majorGridLines.color = '#eaeaea';
 ```
 
+### Base style
+
+Good baseline style for easier copy pasting.
+
+```js
+var colors = [ 
+    '#3498db', // Blue 
+    '#e74c3c', // Red 
+    '#f1c40f', // Yellow 
+    '#28b463', // Green 
+    '#2e4053', // Black 
+    '#e67e22' // Orange 
+]; 
+config.seriesColors = colors;
+config.valueAxis.majorGridLines.color = '#eaeaea';
+```
+
 # **SPForms**
+
+Tips for SPForms development. The SPForms [documentation](https://spform.com/documentation) has good information as well.
 
 ## Tooltips
 
@@ -143,7 +162,7 @@ Initialize the tooltip like this:
 ```js
 $(function () {
     $('#id').tooltip({
-        content: '<h1>Whatever HTML in here</h1>,
+        content: '<h1>Whatever HTML in here</h1>',
         position: {
             my: 'left center',
             at: 'right center'
@@ -156,6 +175,8 @@ $(function () {
 
 # **Sharepoint ( ͡° ͜ʖ ͡°)**
 
+Various notes for Sharepoint stuff.
+
 ## Setting up theme for new site
 
 * Open `styles/custom.css` and replace the primary and/r secondary color codes.
@@ -165,18 +186,3 @@ $(function () {
 * Replace iQubeS logo on `settings/iQubeSImages/QHSE.png` with said companies logo
 
 * Replace slideshow images in `settings/RollingPictures`. Changing number of pictures is done on master page.
-
-
-## Testing
-
-And some random JavaScript `codaroni` for the road:
-
-?> **Tip:** You can hover of the top right corner and click to copy a code snippet.
-
-```js
-function functionName(parameter) {
-    return parameter + ' is the parameter that I used.';
-}
-
-console.log(functionName('Sample parameter'));
-```
