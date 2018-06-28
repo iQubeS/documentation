@@ -6,9 +6,52 @@
 
 The Dashboard Designer uses the Kendo UI framework for creating the charts. Therefore the documentation for that framework is applicable for customising the Dashboard Designer charts.
 
-[An overview of the Kendo UI Charts](https://docs.telerik.com/kendo-ui/controls/charts/overview "Kendo UI Charts Overview")
+[Here's an overview of the Kendo UI Charts](https://docs.telerik.com/kendo-ui/controls/charts/overview "Kendo UI Charts Overview")
 
-[Kendo UI Charts documentation](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart "Kendo UI Charts documentation")
+Check out the [Kendo UI Charts documentation](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart "Kendo UI Charts documentation") for detailed documentation.
+
+## Best practices
+
+Here's a list of best practices to follow when making charts. Following these will make maintainance easier, help keep the charts consistent throughout all sites, and make performance better.
+
+#### Console statements
+All console statements(and alert statements) used for development purposes should be removed before handing over the charts.
+
+#### Only select applicable columns
+In the `Sharepoint List` tab in the `Data Source` tab, only check the columns that are actually used in the chart.
+
+#### Use list views
+When a chart is supposed to show conditional data (e.g. chart only showing tasks past due date) it's best to select a view that matches that filtering in the `Data Source` tab. If no such view exists, create one with a descriptive name with the prefix 'Chart' (e.g. 'ChartTasksPastDueDate').
+
+#### Use `$.each()` for basic iteration
+When iterating through arrays, use the jQuery function `$.each()` with parameters `index` and `item`. This makes the code a bit cleaner and more readable.
+
+```js
+$.each(data, function(index, item) {
+    // Logic
+});
+
+// 'item' can be replaced with something more descriptive, for example
+// when the array name is a plural noun it can be changed to the singular form:
+$.each(statuses, function(index, status) {
+    // Logic
+})
+```
+
+#### Data variable
+When any sort of manipulation needs to be done to the dataset in either of the `Advanced` tabs the dataset should be assigned to a variable called `data`. Example:
+
+```js
+handlers.requestSuccess = function(data, logger) {
+  var data = data.items;
+  $.each(data, function(index, item) {
+    if (item.Department === 'Middle Management' || item.Department === 'Upper Management') {
+        item.Department = 'Management';
+    }
+  });
+  return true;
+}
+```
 
 ## Drilldowns
 
