@@ -104,22 +104,7 @@ config.plotAreaClick = function (e) {
 }
 ```
 
-## Color theme
-
-The color theme for a chart can be changed in the *__Advanced tab__* in the *__Dashboard tab__* by setting the `config.seriesColors` to an `array` of [CSS colors](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value)
-
-```js
-var colors = [ 
-    '#3498db', // Blue 
-    '#e74c3c', // Red 
-    '#f1c40f', // Yellow 
-    '#28b463', // Green 
-    '#2e4053', // Black 
-    '#e67e22' // Orange 
-]; 
- 
-config.seriesColors = colors; 
-```
+## Color in charts
 
 To set a certain series' color: 
  
