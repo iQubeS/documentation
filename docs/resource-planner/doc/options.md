@@ -7,7 +7,7 @@
 An `Array` of `Objects` that define the items in the Resource Planner. The values used are:
 
 - title: `String` for title of item *Optional*
-    - This will by default be the text on the item itself. Can be omitted if the item has custom rendering.
+    - This will, by default, be the text on the item itself. Can be omitted if the item has custom rendering.
 - resource: `String` for title of resource
     - Resources are the values on the y-axis of the grid. For example a bar or an oilrig.
 - startDate: `Date` for start date of the item (DayJS compliant)
@@ -18,7 +18,7 @@ Any other properties can be included for custom functionality or custom renderin
 
 ## dataMapping
 - Type: `Object`
-- Default: `{}`
+- Default: none
 
 Properties can(and will almost certainly be needed) to be mapped to fit the item schema.
 
@@ -109,7 +109,7 @@ The margin between items in the grid in pixels.
 The zoom-level of the timeline. More will be added.
 
 ## viewStart
-- Type: `string` | `number` | `Date` | `Dayjs`
+- Type: `String` | `Number` | `Date` | `Dayjs`
 - Default: `dayjs()` (today)
 
 The first day of the month of the date chosen is the starting point of the timeline when initialized. Takes native Javascript Date objects, ISO 8601 strings and Unix timestamps(ms). See [DayJS documentation](https://github.com/iamkun/dayjs/blob/master/docs/en/API-reference.md#constructor-dayjsexisting-string--number--date--dayjs) for more info.
@@ -143,3 +143,41 @@ color: function(item) {
     return item.color;
 },
 ```
+
+## customItemRendering
+- Type: `Function`
+- Default: none
+
+This function takes 1 parameter: an Item instance. This should return a `String` with HTML.
+
+Example: If the PSS data would look something like this:
+
+```js
+{
+    allocatedResources: 1,
+    requiredResources: 2,
+    date: '2018-12-21T09:33:56.523Z',
+    id: 42,
+    resource: 'Dickens',
+    department: 'Stavanger'
+    // Probably more
+}
+```
+The custom rendering might be defined like this:
+
+```js
+function(item) {
+    var title = item.allocatedResources + '(' + item.requiredResources + ')';
+    return '<div class="item-content" id="' + item.id + '">' + title + '</div>';
+}
+```
+
+which would end up as this HTML:
+
+```html
+<div class="item">
+    <div class="item-content" id="42">1(2)</div>
+</div>
+```
+
+the planner automatically wraps it in an `.item` container which is used for the grid logic of the planner. Everything inside that container can be customized and used in event handlers.
