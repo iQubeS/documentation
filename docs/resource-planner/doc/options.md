@@ -134,12 +134,10 @@ Array of CSS color values. These colors are equally distributed to resources. So
 - Type: `String`
 - Default: none
 
-Background color of items. Has to be a CSS color. Can be dynamic by making it a function that returns a string. The function has 1 parameter that is the item. Example where items that have Dickens as a resource get colored orange, otherwise remain the same:
+Background color of items. Has to be a CSS color. Can be dynamic by making it a function that returns a string. The function has 1 parameter that is the item. Example where items that have Dickens as a resource get colored orange, otherwise they keep their default color from the palette:
 ```js
 color: function(item) {
-    if (item.resource.title === 'Dickens') {
-        return 'orange';
-    }
+    if (item.resource.title === 'Dickens') return 'orange';
     return item.color;
 },
 ```
