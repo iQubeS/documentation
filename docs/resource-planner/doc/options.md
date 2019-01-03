@@ -6,12 +6,16 @@
 
 An `Array` of `Objects` that define the items in the Resource Planner. The values used are:
 
-- title: `String` for title of item *Optional*
+- title: `String` (Default: `''`)
+    - For title of item *Optional*
     - This will, by default, be the text on the item itself. Can be omitted if the item has custom rendering.
-- resource: `String` for title of resource
+- resource: `String`
+    - Title of the resource responsible for the item.
     - Resources are the values on the y-axis of the grid. For example a bar or an oilrig.
-- startDate: `Date` for start date of the item (DayJS compliant)
-- endDate: `Date` for end date of the item (DayJS compliant) *Optional*
+- startDate: `Date`
+    - Start date for the item (DayJS compliant)
+- endDate: `Date` (Default: Same as `startDate`)
+    - End date of the item (DayJS compliant) *Optional*
     - If omitted it will be set to the same date as the start date.
 
 Any other properties can be included for custom functionality or custom rendering.
@@ -165,8 +169,14 @@ The custom rendering might be defined like this:
 
 ```js
 function(item) {
-    var title = item.allocatedResources + '(' + item.requiredResources + ')';
-    return '<div class="item-content" id="' + item.id + '">' + title + '</div>';
+    var allocated = item.allocatedResources;
+    var required = item.requiredResources;
+    var title = allocated + '(' + required + ')';
+    var allocationProgress = '';
+    if (required > allocated && allocated !== 0) allocationProgress = 'allocation-not-full';
+    if (required === allocated) allocationProgress = 'allocation-full';
+    if (allocated === 0) allocationProgress = 'allocation-empty';
+    return '<div class="item-content ' + allocationProgress + '" id="' + item.id + '">' + title + '</div>';
 }
 ```
 
@@ -174,8 +184,28 @@ which would end up as this HTML:
 
 ```html
 <div class="item">
-    <div class="item-content" id="42">1(2)</div>
+    <div class="item-content allocation-not-full" id="42">1(2)</div>
 </div>
 ```
 
 the planner automatically wraps it in an `.item` container which is used for the grid logic of the planner. Everything inside that container can be customized and used in event handlers.
+
+## onClick
+- Type: `Function`
+- Default: none
+
+## onDoubleClick
+- Type: `Function`
+- Default: none
+
+## onGridDoubleClick
+- Type: `Function`
+- Default: none
+
+## onMouseEnter
+- Type: `Function`
+- Default: none
+
+## onMouseLeave
+- Type: `Function`
+- Default: none
