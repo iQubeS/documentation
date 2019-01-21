@@ -105,13 +105,6 @@ The height of the Resource Planner in pixels.
 
 The margin between items in the grid in pixels.
 
-## viewType
-- Type: `String`
-- Default: `'month'`
-- Options: `'month'`, `'3 months'`
-
-The zoom-level of the timeline. More will be added.
-
 ## viewStart
 - Type: `String` | `Number` | `Date` | `Dayjs`
 - Default: `dayjs()` (today)
@@ -125,8 +118,14 @@ The first day of the month of the date chosen is the starting point of the timel
 - Type: `Boolean`
 - Default: `false`
 
-
 If true, highlights current day in timeline.
+
+## verticalGridlines
+
+- Type: `Boolean`
+- Default: `true`
+
+If true, displays vertical gridlines.
 
 ## palette
 - Type: `Array`
@@ -194,18 +193,28 @@ the planner automatically wraps it in an `.item` container which is used for the
 - Type: `Function`
 - Default: none
 
+Click event handler for items.
+
 ## onDoubleClick
 - Type: `Function`
 - Default: none
+
+Double click event handler for items.
 
 ## onGridDoubleClick
 - Type: `Function`
 - Default: none
 
+Double click event handler for grid.
+
 ## onMouseEnter
 - Type: `Function`
 - Default: none
 
+On mouse enter event handler for items.
+
 ## onMouseLeave
 - Type: `Function`
 - Default: none
+
+On mouse leave event handler for items.
