@@ -189,6 +189,12 @@ which would end up as this HTML:
 
 the planner automatically wraps it in an `.item` container which is used for the grid logic of the planner. Everything inside that container can be customized and used in event handlers.
 
+## customResourceRendering
+- Type: `Function`
+- Default: none
+
+Same as `customItemRendering`, but a bit more restrained.
+
 ## onClick
 - Type: `Function`
 - Default: none
