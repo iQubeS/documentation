@@ -99,6 +99,11 @@ The height of items in the grid in pixels.
 
 The height of the Resource Planner in pixels.
 
+For a dynamic height, something like this can be done. `headerOffset` is used to offset the height incase there is a header/toplink bar.
+```js
+plannerHeight: window.innerHeight - $('#planner').position().top - headerOffset
+```
+
 ## margin
 - Type: `Number`
 - Default: `4`
@@ -111,14 +116,6 @@ The margin between items in the grid in pixels.
 
 The first day of the month of the date chosen is the starting point of the timeline when initialized. Takes native Javascript Date objects, ISO 8601 strings and Unix timestamps(ms). See [DayJS documentation](https://github.com/iamkun/dayjs/blob/master/docs/en/API-reference.md#constructor-dayjsexisting-string--number--date--dayjs) for more info.
 
-## highlightToday 
-
-***(YET TO BE IMPLEMENTED)***
-
-- Type: `Boolean`
-- Default: `false`
-
-If true, highlights current day in timeline.
 
 ## verticalGridlines
 
@@ -198,29 +195,46 @@ Same as `customItemRendering`, but a bit more restrained.
 ## onClick
 - Type: `Function`
 - Default: none
+- Available parameters: item, id, event
 
 Click event handler for items.
+
+```js
+onClick: function(item, id, event) {
+    console.log(item); // Really useful for debugging
+    doSomethingWithItem(item);
+}
+```
 
 ## onDoubleClick
 - Type: `Function`
 - Default: none
+- Available parameters: item, id, event
 
 Double click event handler for items.
 
 ## onGridDoubleClick
 - Type: `Function`
 - Default: none
+- Available parameters: column, resourceId, resource, event
 
 Double click event handler for grid.
 
 ## onMouseEnter
 - Type: `Function`
 - Default: none
+- Available parameters: item, id, event
 
 On mouse enter event handler for items.
 
 ## onMouseLeave
 - Type: `Function`
 - Default: none
+- Available parameters: item, id, event
 
 On mouse leave event handler for items.
+
+## initializationDone
+- Type: `Function`
+- Default: none
+- Available parameters: items (array of the items)

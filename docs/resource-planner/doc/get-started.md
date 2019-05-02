@@ -1,9 +1,21 @@
 # Get started
 
+## Data
+
+The minimum amount of data needed for each item is
+
+- Title of the item
+- Resource the item is tied to
+- Start date of the item
+
+End date can also be provided, and usually is. If it isn't it defaults to the same date as start date.
+
 ## Basic setup
 
+Here's a basic setup for the Resource Planner. 
+
 ```js
-$('#empty-div').ResourcePlanner({
+$('#an-empty-div').ResourcePlanner({
   data: data,
   dataMapping: {
     title: 'title',
