@@ -12,7 +12,7 @@ An `object` with several parameters:
 - Type: `String`
 - Default: `'/'`
 
-The subsite the list belongs to. `'/'` is root. For example this could be '`/QHSE`'
+The subsite the list belongs to. `'/'` is root. For example this could be `'/QHSE'`.
 
 #### listName
 - Type: `String`
@@ -36,13 +36,13 @@ Seldomly used. Read SPServices docs for info.
 - Type: `String[]`
 - Default: columns in default view
 
-An array of strings with internal names of all desired columns, except for IQSAdvancedLookup columns. For example `['Title', 'Personnel', 'Department']`.
+An array of strings with internal names of all desired columns, including IQSAdvancedLookup columns. For example `['Title', 'Personnel', 'Department']`.
 
 #### advancedLookupFields (optional)
 - Type: `String[]`
 - Default: none
 
-Here you'll put the IQSAdvancedLookup columns. They are separated in their own array because the `getListItems` function does its ✨ magic ✨ on them so that SharePoint doesn't flip out.
+Here you need to specify which of the columns are IQSAdvancedLookup fields because the `getListItems` function does its ✨ magic ✨ on them so that SharePoint doesn't flip out.
 
 ## Callback
 
