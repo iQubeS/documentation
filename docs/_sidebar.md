@@ -1,4 +1,5 @@
 * [Home](/)
+    # [Basics](basics.md)
     * Plumsail products
         * [Dashboard Designer](plumsail/dashboard-designer.md)
         * [SPForms Designer](plumsail/spforms-designer.md)
@@ -9,4 +10,4 @@
         * [Methods](resource-planner/doc/methods.md)
     * Utilities
         * [getListItems.js](utilities/get-list-items.md)
-    * [3.5 stuff](35-stuff.md)
+    <!-- * [3.5 stuff](35-stuff.md) -->
