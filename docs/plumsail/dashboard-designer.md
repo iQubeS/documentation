@@ -119,3 +119,63 @@ To set a certain data item's color:
 config.series[0].colorField = 'color'; 
 config.series[0].data.color = '#f1c40f'; 
 ```
+
+## Template
+
+### Data Source > Advanced template
+
+This removes the example data.
+
+```js
+var handlers = {};
+handlers.init = function(data, logger) {
+  return true;
+}
+
+handlers.requestInit = function(query, logger) {
+  return true;
+}
+
+handlers.requestSuccess = function(data, logger) {
+  return true;
+}
+
+handlers.requestError = function(error, logger) {
+  return $.Deferred().reject(error);
+}
+
+handlers.aggregationSuccess = function(data, logger) {
+  return true;
+}
+
+handlers.aggregationError = function(error, logger) {
+  return $.Deferred().reject(error);
+}
+
+handlers.finish = function(data, logger) {
+  return true;
+}
+```
+
+### Dashboard > Advanced template
+
+This sets the styling used throughout iQS sites.
+
+```js
+var handlers = {};
+var colors = ['#3498db', '#e74c3c', '#f1c40f', '#28b463', '#e67e22', '#2e4053'];
+handlers.preRender = function(config, logger, processor, el) {
+  config.seriesColors = colors;
+ 	config.valueAxis.majorGridLines.color = '#eee';
+  config.valueAxis.labels.color = 'rgba(0, 0, 0, 0.55)';
+  config.categoryAxis.labels.color = 'rgba(0, 0, 0, 0.7)';
+  return true;
+}
+```
+
+## Styling
+
+Some minor points about styling
+
+- When making a bar or column chart, remove the gridlines that are parallel to the bars.
+    - For example, for bar charts go to `Dashboard > Style > Category axis` and tick off "Display major grid lines"
