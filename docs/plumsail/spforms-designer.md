@@ -1,6 +1,14 @@
 # Forms Designer
 
-Get an array of values selected in a multi choice field.
+## Get value of selected advanced lookup field
+
+```js
+function getAdvancedLookup(title) {
+	return fd.field(title).control()._el().find('option[selected="selected"]').text();
+}
+```
+
+## Get array of values selected in a multi choice field.
 
 ```js
 function getMultiChoiceValues(fieldName) {
