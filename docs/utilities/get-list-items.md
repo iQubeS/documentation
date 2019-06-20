@@ -80,7 +80,7 @@ var options = {
     webURL: '/SomeSubsite',
     listName: SOME_LIST_GUID,
     CAMLQuery: '<Query><Where><Eq><FieldRef Name="SomeField"/><Value Type="Choice">SomeChoice</Value></Eq></Where></Query>',
-    columns: ['Title', 'SomeField'],
+    columns: ['Title', 'SomeField', 'SomeAdvancedLookupField'],
     advancedLookupFields: ['SomeAdvancedLookupField']
 };
 
