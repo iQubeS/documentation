@@ -1,6 +1,6 @@
 # **getListItems.js**
 
-?> This utility function makes it easier to use the [SPServices getListItemsJson function](http://sympmarc.github.io/SPServices/utilities/SPGetListItemsJson.html) in iQS 3/3.5. It allows you to simply list what columns you want from a list with no CAML view field nonsense and handles all the annoying stuff you have to do to fetch IQSAdvancedLookup fields.
+?> This utility function makes it easier to use the [SPServices getListItemsJson function](http://sympmarc.github.io/SPServices/utilities/SPGetListItemsJson.html) in iQS 3/3.5. It allows you to simply list what columns you want from a list with no CAML view field nonsense and handles all the annoying stuff you have to do to fetch IQSAdvancedLookup fields. Another handy thing it does is provide you with column types and other useful metadata.
 
 `getListItems` accepts two parameters; options and a callback, both of which are required.
 
@@ -18,76 +18,80 @@ The subsite the list belongs to. `'/'` is root. For example this could be `'/QHS
 - Type: `String`
 - Default: none
 
-This *can* be the name of a list, but the best practice would be to use the GUID like so:
-```js
-var COMPANIES_LIST_GUID = 'F613CF60-16C0-4362-A0B8-E1270669CB91';
-getListsItems({ listName: COMPANIES_LIST_GUID }, function(data) {
-    /* ... */
-});
-```
-This is to improve readability of the code. All caps snake case used to denote a constant.
-
-The GUID can be found in the URL of list settings. For example the Project General list on iqubes.signin.no:
-
-`https://iqubes.signin.no/_layouts/15/listedit.aspx?List=%7BA79E4113-0149-422E-ADB7-ABA2D5ECE0F4%7D`
-
-The GUID is `A79E4113-0149-422E-ADB7-ABA2D5ECE0F4`, the `%7B` and `%7D` are [URL encoded](https://en.wikipedia.org/wiki/Percent-encoding) `{` and `}`.
+This should be the display name of the list.
 
 #### CAMLQuery (optional)
 - Type: `String`
 - Default: none
 
-If you want to specify any filtering via CAML. Makes for better performance and less cluttered JavaScript.
+If you want to specify any filtering with CAML. It's good to use this for any kind of filtering because it makes the request faster and declutters your code.
 
 #### CAMLQueryOptions (optional)
 - Type: `String`
 - Default: none
 
-Seldomly used. Read SPServices docs for info.
+Seldomly used. [Read Microsoft docs on queryOptions](https://docs.microsoft.com/en-us/previous-versions/office/developer/sharepoint-services/ms774760(v=office.12)) for better info.
 
 #### columns (optional)
 - Type: `String[]`
 - Default: columns in default view
 
-An array of strings with internal names of all desired columns, including IQSAdvancedLookup columns. For example `['Title', 'Personnel', 'Department']`.
+An array of strings with internal names of all desired columns. 
 
-#### advancedLookupFields (optional)
-- Type: `String[]`
-- Default: none
-
-Here you need to specify which of the columns are IQSAdvancedLookup fields because the `getListItems` function does its ✨ magic ✨ on them so that SharePoint doesn't flip out.
+For example 
+```js
+columns: ['Title', 'Personnel', 'Department'];
+```
 
 ## Callback
 
-A callback function with one parameter, which is an array of the items fetched.
+A callback function that provides 2 parameters:
+### Data
+An array of objects representing the list items.
+### Fields
+An object where the keys are the internal names of the list items and the values contain additional metadata for the fields, such as display name, whether it's mandatory, default value, as well as type-specific properties for example lookups have a source list and choice fields have a list of choices.
+
+Example of what it looks like:
+
+```js
+{
+	Title: {
+		displayName: 'Company Name',
+		internalName: 'Title',
+		readOnly: false,
+		required: true,
+		type: 'Text'	
+	}
+}
+```
+
 
 ## Examples
 
 Most basic example would be the following, which fetches the "Companies" list with default settings:
 
 ```js
-var COMPANIES_LIST_GUID = 'F613CF60-16C0-4362-A0B8-E1270669CB91';
-getListItems({ listName: COMPANIES_LIST_GUID }, function(data) {
-    console.log(data);
+getListItems({
+	webURL: '/', listName: 'Companies'
+}, function(data, fields) {
+  console.log(data, fields);
 });
 ```
 
-A more complex example:
+A more typical usecase example:
 
 ```js
-var SOME_LIST_GUID = '45DE91DA-A897-41CF-B657-18B3315A5BAD';
 var options = {
     webURL: '/SomeSubsite',
-    listName: SOME_LIST_GUID,
+    listName: 'Some List',
     CAMLQuery: '<Query><Where><Eq><FieldRef Name="SomeField"/><Value Type="Choice">SomeChoice</Value></Eq></Where></Query>',
     columns: ['Title', 'SomeField'],
-    advancedLookupFields: ['SomeAdvancedLookupField']
 };
 
-getListItems(options, setupChart);
+getListItems(options, setupSomeChart);
 
-function setupChart(data) {
-    /* Setup some chart with the data */
+function setupSomeChart(data, fields) {
+  /* Yay, now I can use item data in my chart 🎉 */
 }
 
 ```
