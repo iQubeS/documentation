@@ -120,6 +120,43 @@ config.series[0].colorField = 'color';
 config.series[0].data.color = '#f1c40f'; 
 ```
 
+## List view hash filtering
+
+Here's a handy function for alter the hash for list view filtering
+
+```js
+/*
+ * filter is a array of objects that have two keys: field and value	
+*/
+function setHashFilter(filter) {
+	var wpid = window.ctx.clvp.wpid;
+	var filterPrefix = 'InplviewHash' + wpid + '=';
+	var filterString = '';
+	$.each(filter, function(index, item) {
+		if (typeof item.value === 'string') item.value = item.value.replace(/-/g, '%2D');
+		var filterField = 'FilterField' + (index + 1) + '=' + item.field;
+		var filterValue = 'FilterValue' + (index + 1) + '=' + item.value;
+		filterString += filterField + '-' + filterValue + '-';
+	});
+	window.location.hash = filterPrefix + encodeURIComponent(filterString);
+}
+```
+Here's an example of it being used
+
+```js
+config.seriesClick = function (e) {
+	if (currentDistrict.toLowerCase() !== 'all districts') {
+			setHashFilter([
+			{ field: 'District', value: currentDistrict },
+			{ field: 'ProductFamily', value: e.category },
+		]);
+	} else {
+			setHashFilter([{ field: 'ProductFamily', value: e.category }]);
+	}
+	filtrationApplied = true;
+}
+```
+
 ## Template
 
 ### Data Source > Advanced template
