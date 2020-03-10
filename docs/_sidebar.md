@@ -10,3 +10,4 @@
         * [Methods](resource-planner/doc/methods.md)
     * Utilities
         * [getListItems.js](utilities/get-list-items.md)
+        * [updateListItems.js](utilities/update-list-items.md)

@@ -1,8 +1,8 @@
-# **getListItems.js**
+# **updateListItems.js**
 
 ?> This utility function makes it easier to use the [SPServices getListItemsJson function](http://sympmarc.github.io/SPServices/utilities/SPGetListItemsJson.html) in iQS 3/3.5. It allows you to simply list what columns you want from a list with no CAML view field nonsense and handles all the annoying stuff you have to do to fetch IQSAdvancedLookup fields. Another handy thing it does is provide you with column types and other useful metadata.
 
-`getListItems` accepts two parameters; options and a callback, both of which are required.
+`updateListItems` accepts two parameters; options and a callback, both of which are required.
 
 ## Options
 
