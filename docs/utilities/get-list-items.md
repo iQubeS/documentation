@@ -1,5 +1,7 @@
 # **getListItems.js**
 
+[Download getListItems.js version 2.21](https://iqubes.signin.no/Project_17-054538/SiteAssets/Releases/getListItems/getListItems.js)
+
 ?> This utility function makes it easier to use the [SPServices getListItemsJson function](http://sympmarc.github.io/SPServices/utilities/SPGetListItemsJson.html) in iQS 3/3.5. It allows you to simply list what columns you want from a list with no CAML view field nonsense and handles all the annoying stuff you have to do to fetch IQSAdvancedLookup fields. Another handy thing it does is provide you with column types and other useful metadata.
 
 `getListItems` accepts two parameters; options and a callback, both of which are required.
@@ -107,3 +109,19 @@ function setupSomeChart(data, fields) {
 }
 
 ```
+
+## Changelog
+### Version 2.21: {docsify-ignore}
+- `getView` renamed to `getListView` due to naming conflict with the quick search webpart.
+### Version 2.20: {docsify-ignore}
+- New boolean option: `getAllColumns`.
+### Version 2.10: {docsify-ignore}
+- Fields properties for MLT/Note fields.
+- Code cleanup.
+### Version 2.00: {docsify-ignore}
+- Support for views via the `viewName` parameter.
+- No longer a need to provide a list of IQSAdvancedLookupFields, it sorts that out on it's own.
+- Fields info. It supplies the callback with another parameter `fields` which
+	has internal name, display name and field type for each field in the list, as well
+	as other properties that differ from column types. It's really helpful for creating custom forms, 
+	i.e. choices and default choice for choice columns, source list and display fields for lookups.
