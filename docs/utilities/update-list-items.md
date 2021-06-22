@@ -76,34 +76,3 @@ Example of what it looks like:
 	}
 }
 ```
-
-
-## Examples
-
-Most basic example would be the following, which fetches the "Companies" list with default settings:
-
-```js
-getListItems({
-	webURL: '/', listName: 'Companies'
-}, function(data, fields) {
-  console.log(data, fields);
-});
-```
-
-A more typical usecase example:
-
-```js
-var options = {
-    webURL: '/SomeSubsite',
-    listName: 'Some List',
-    CAMLQuery: '<Query><Where><Eq><FieldRef Name="SomeField"/><Value Type="Choice">SomeChoice</Value></Eq></Where></Query>',
-    columns: ['Title', 'SomeField'],
-};
-
-getListItems(options, setupSomeChart);
-
-function setupSomeChart(data, fields) {
-  /* Yay, now I can use item data in my chart 🎉 */
-}
-
-```

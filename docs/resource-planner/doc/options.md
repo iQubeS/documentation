@@ -104,12 +104,6 @@ For a dynamic height, something like this can be done. `headerOffset` is used to
 plannerHeight: window.innerHeight - $('#planner').position().top - headerOffset
 ```
 
-## margin
-- Type: `Number`
-- Default: `4`
-
-The margin between items in the grid in pixels.
-
 ## viewStart
 - Type: `String` | `Number` | `Date` | `Dayjs`
 - Default: `dayjs()` (today)

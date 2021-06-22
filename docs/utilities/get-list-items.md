@@ -86,7 +86,8 @@ Most basic example would be the following, which fetches the "Companies" list wi
 
 ```js
 getListItems({
-	webURL: '/', listName: 'Companies'
+	webURL: '/',
+	listName: 'Companies'
 }, function(data, fields) {
   console.log(data, fields);
 });

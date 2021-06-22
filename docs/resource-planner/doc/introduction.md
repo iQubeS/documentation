@@ -1,6 +1,6 @@
 # Introduction
 
-The Resource Planner is a grid-based timeline view that can be used to visualize tasks, schedules, projects etc.
+The jQuery Resource Planner is a grid-based timeline view that can be used to visualize tasks, schedules, projects etc.
 
 Time is displayed on the x-axis and categories on the y-axis.
 
