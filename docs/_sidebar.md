@@ -1,5 +1,4 @@
 * [Home](/)
-    * [Useful links](useful-links.md)
     * Plumsail products
         * [Dashboard Designer](plumsail/dashboard-designer.md)
         * [SPForms Designer](plumsail/spforms-designer.md)

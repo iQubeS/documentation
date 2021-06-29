@@ -1,3 +1,6 @@
+# NOTE
+This isn't linked in the sidebar since it was written for summer interns.
+
 # Basics
 
 Some links to websites, articles, guides and documentation that should be useful to learn or brush up on various topics. Starting with the websites I use daily:
