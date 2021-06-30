@@ -2,7 +2,7 @@
 
 Documentation for various projects and libraries developed by iQubeS.
 
-## Editing Documentation
+## Editing Documentation <!-- {docsify-ignore} -->
 
 You start by cloning the [repository](https://github.com/iQubeS/documentation) and installing dependencies.
 

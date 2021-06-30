@@ -7,6 +7,7 @@
     -webkit-touch-callout: none;
     -webkit-box-sizing: border-box;
     --theme-color: #42b983;
+		--sidebar-width: 350px;
     box-sizing: border-box;
 }
 
@@ -261,7 +262,7 @@ main.hidden {
     transition: -webkit-transform 250ms ease-out;
     transition: transform 250ms ease-out;
     transition: transform 250ms ease-out, -webkit-transform 250ms ease-out;
-    width: 300px;
+    width: var(--sidebar-width);
     z-index: 20;
 }
 
@@ -312,7 +313,12 @@ main.hidden {
 }
 
 .sidebar ul li ul {
-    padding-left: 20px;
+    padding-left: 1rem;
+}
+
+.sidebar img {
+	width: 180px;
+	opacity: 0.8;
 }
 
 .sidebar::-webkit-scrollbar {
@@ -371,7 +377,7 @@ body.sticky .sidebar-toggle {
     top: 0;
     right: 0;
     bottom: 0;
-    left: 300px;
+    left: var(--sidebar-width);
     -webkit-transition: left 250ms ease;
     transition: left 250ms ease;
 }
@@ -751,10 +757,6 @@ body {
     text-decoration: underline;
 }
 
-.sidebar ul li ul {
-    padding: 0;
-}
-
 .sidebar ul li.active>a {
     border-right: 2px solid;
     color: var(--theme-color, #42b983);
@@ -1013,4 +1015,8 @@ pre::after {
     right: 0;
     text-align: right;
     top: 0;
+}
+
+body > main > aside > div > ul > li > ul {
+	padding: 0 !important;
 }

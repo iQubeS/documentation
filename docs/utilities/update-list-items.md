@@ -1,78 +1,199 @@
 # **updateListItems.js**
 
-?> This utility function makes it easier to use the [SPServices getListItemsJson function](http://sympmarc.github.io/SPServices/utilities/SPGetListItemsJson.html) in iQS 3/3.5. It allows you to simply list what columns you want from a list with no CAML view field nonsense and handles all the annoying stuff you have to do to fetch IQSAdvancedLookup fields. Another handy thing it does is provide you with column types and other useful metadata.
+?> This script makes it easier to use th SPServicese [UpdateListItems](http://sympmarc.github.io/SPServices/core/web-services/Lists/UpdateListItems.html) and [AddAttachment](https://sympmarc.github.io/SPServices/core/web-services/Lists.html#:~:text=Introduced-,AddAttachment,-%5BwebURL%5D%2C%20listName%2C%20listItemID) in iQS 3/3.5.
 
-`updateListItems` accepts two parameters; options and a callback, both of which are required.
+## updateItem
 
-## Options
+Has three parameters, `option`, `success` and `error`.
 
-An `object` with several parameters:
-
-#### webURL (optional)
-- Type: `String`
-- Default: `'/'`
-
-The subsite the list belongs to. `'/'` is root. For example this could be `'/QHSE'`.
-
-#### listName
-- Type: `String`
-- Default: none
-
-This should be the display name of the list.
-
-### viewName (optional)
-- Type: `String`
-- Default: none
-
-This should be the display name of the view.
-
-#### CAMLQuery (optional)
-- Type: `String`
-- Default: none
-
-If you want to specify any filtering with CAML. It's good to use this for any kind of filtering because it makes the request faster and declutters your code.
-
-#### CAMLQueryOptions (optional)
-- Type: `String`
-- Default: none
-
-Seldomly used. [Read Microsoft docs on queryOptions](https://docs.microsoft.com/en-us/previous-versions/office/developer/sharepoint-services/ms774760(v=office.12)) for better info.
-
-#### columns (optional)
-- Type: `String[]`
-- Default: columns in default view
-
-An array of strings with internal names of all desired columns. 
-
-For example 
+##### Example usage
 ```js
-columns: ['Title', 'Personnel', 'Department'];
+ updateItem({
+	webURL: '/',
+	listName: 'Some List Name',
+	id: 5,
+	fields: [['Title', 'Fannar Freyr Kristinsson'], ['BirthDate', '1992/07/16']],
+	attachments: someAttachments
+}, function(id, response) {
+	console.log(id, response);
+}, function(errorResponse) {
+	console.log(errorResponse);
+});
 ```
 
-### getAllColumns (optional)
-- Type: `Boolean`
-- Default: false
+### options
 
-If set to true, then the columns parameter will be ignored and all non-hidden and non-private columns of the list will be fetched.
+Type: `Object`
 
-## Callback
+Has 5 properties:
 
-A callback function that provides 2 parameters:
-### Data
-An array of objects representing the list items.
-### Fields
-An object where the keys are the internal names of the list items and the values contain additional metadata for the fields, such as display name, whether it's mandatory, default value, as well as type-specific properties for example lookups have a source list and choice fields have a list of choices.
+##### webURL
 
-Example of what it looks like:
+- Type: `String`
 
+Subsite URL where the list that contains the item you want to update is.
+
+##### listName
+
+- Type: `String`
+
+Display name of the list that contains the item you want to update.
+
+##### fields
+
+- Type: Array of arrays containing key and value
+
+The columns and values you want to set.
+
+Example:
 ```js
-{
-	Title: {
-		displayName: 'Company Name',
-		internalName: 'Title',
-		readOnly: false,
-		required: true,
-		type: 'Text'	
-	}
+fields: [['Title', 'Fannar Freyr Kristinsson'], ['BirthDate', '1992/07/16']]
+```
+
+##### attachments (optional)
+
+- Type: `blob[]`
+
+An array of [`blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob) objects for attachments.
+
+### success
+
+Type: `Function`
+
+Callback function. Has two parameters: ItemID and the server response.
+
+Example:
+```js
+success: function(id, response) {
+	console.log('Updated item ID: ' + id);
+	console.log('Server response: ' + response);
 }
 ```
+
+### error
+
+Type: `Function`
+
+Error callback function. Has a single parameter: the server response.
+
+Example:
+```js
+error: function(response) {
+	console.log('Oh no! Something has gone terribly awry! 😢');
+}
+```
+
+## createItem
+
+Has three parameters, `option`, `success` and `error`.
+
+##### Example usage
+```js
+ createItem({
+	webURL: '/',
+	listName: 'Some List Name',
+	fields: [['Title', 'Fannar Freyr Kristinsson'], ['BirthDate', '1992/07/16']],
+	attachments: someAttachments
+}, function(id, response) {
+	console.log(id, response);
+}, function(errorResponse) {
+	console.log(errorResponse);
+});
+```
+
+### options
+
+Type: `Object`
+
+Has 4 properties:
+
+##### webURL
+
+- Type: `String`
+
+Subsite URL where the list you want to create an item in is.
+
+##### listName
+
+- Type: `String`
+
+Display name of the list you want the item to be added to.
+
+##### fields
+
+- Type: Array of arrays containing key and value
+
+The columns and values you want to set.
+
+Example:
+```js
+fields: [['Title', 'Fannar Freyr Kristinsson'], ['BirthDate', '1992/07/16']]
+```
+
+##### attachments (optional)
+
+- Type: `Blob[]`
+
+An array of [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob) objects for attachments.
+
+### success
+
+Type: `Function`
+
+Callback function. Has two parameters: ItemID and the server response.
+
+Example:
+```js
+success: function(id, response) {
+	console.log('Created item ID: ' + id);
+	console.log('Server response: ' + response);
+}
+```
+
+### error
+
+Type: `Function`
+
+Error callback function. Has a single parameter: the server response.
+
+Example:
+```js
+error: function(response) {
+	console.log('Oh no! Something has gone terribly awry! 😢');
+}
+```
+
+## attachToItem
+
+Attach a file to a list item.
+
+##### Example usage
+```js
+ attachToItem(file, 5, { webURL: '/', listName: 'Some List' });
+```
+
+### file
+
+Type: `Blob`
+
+### id
+
+Type: `Number`
+
+### options
+
+Type: `Object`
+
+Has two parameters:
+
+##### webURL
+
+- Type: `String`
+
+Subsite URL where the list that contains the item you want to attach a file to is.
+
+##### listName
+
+- Type: `String`
+
+Display name of the list that contains the item you want attach a file to.

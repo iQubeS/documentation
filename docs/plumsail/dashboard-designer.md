@@ -122,7 +122,7 @@ config.series[0].data.color = '#f1c40f';
 
 ## List view hash filtering
 
-Here's a handy function for alter the hash for list view filtering
+Here's a handy function for altering the hash for list view filtering
 
 ```js
 /*

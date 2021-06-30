@@ -2,7 +2,7 @@
 
 [Download getListItems.js version 2.21](https://iqubes.signin.no/Project_17-054538/SiteAssets/Releases/getListItems/getListItems.js)
 
-?> This utility function makes it easier to use the [SPServices getListItemsJson function](http://sympmarc.github.io/SPServices/utilities/SPGetListItemsJson.html) in iQS 3/3.5. It allows you to simply list what columns you want from a list with no CAML view field nonsense and handles all the annoying stuff you have to do to fetch IQSAdvancedLookup fields. Another handy thing it does is provide you with column types and other useful metadata.
+?> This script makes it easier to use the [SPServices getListItemsJson function](http://sympmarc.github.io/SPServices/utilities/SPGetListItemsJson.html) in iQS 3/3.5. It allows you to simply list what columns you want from a list with no CAML view field nonsense and handles all the annoying stuff you have to do to fetch IQSAdvancedLookup fields. Another handy thing it does is provide you with column types and other useful metadata.
 
 `getListItems` accepts two parameters; options and a callback, both of which are required.
 
@@ -10,13 +10,13 @@
 
 An `object` with several parameters:
 
-#### webURL (optional)
+### webURL (optional)
 - Type: `String`
 - Default: `'/'`
 
 The subsite the list belongs to. `'/'` is root. For example this could be `'/QHSE'`.
 
-#### listName
+### listName
 - Type: `String`
 - Default: none
 
@@ -28,19 +28,19 @@ This should be the display name of the list.
 
 This should be the display name of the view.
 
-#### CAMLQuery (optional)
+### CAMLQuery (optional)
 - Type: `String`
 - Default: none
 
 If you want to specify any filtering with CAML. It's good to use this for any kind of filtering because it makes the request faster and declutters your code.
 
-#### CAMLQueryOptions (optional)
+### CAMLQueryOptions (optional)
 - Type: `String`
 - Default: none
 
 Seldomly used. [Read Microsoft docs on queryOptions](https://docs.microsoft.com/en-us/previous-versions/office/developer/sharepoint-services/ms774760(v=office.12)) for better info.
 
-#### columns (optional)
+### columns (optional)
 - Type: `String[]`
 - Default: columns in default view
 
