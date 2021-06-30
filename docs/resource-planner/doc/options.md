@@ -142,7 +142,7 @@ color: function(item) {
 
 This function takes 1 parameter: an Item instance. This should return a `String` with HTML.
 
-Example: If the PSS data would look something like this:
+Example: If the PSS Guardlist data would look something like this:
 
 ```js
 {
@@ -220,13 +220,6 @@ Double click event handler for grid.
 - Available parameters: item, id, event
 
 On mouse enter event handler for items.
-
-## onMouseLeave
-- Type: `Function`
-- Default: none
-- Available parameters: item, id, event
-
-On mouse leave event handler for items.
 
 ## initializationDone
 - Type: `Function`

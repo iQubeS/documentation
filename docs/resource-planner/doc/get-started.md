@@ -1,5 +1,7 @@
 # Get started
 
+The jQuery Resource Planner needs to be initialized on an empty div. It has a single required parameter that is an object of options.
+
 ## Data
 
 The minimum amount of data needed for each item is
@@ -20,7 +22,8 @@ $('#an-empty-div').ResourcePlanner({
   dataMapping: {
     title: 'title',
     resource: 'resource',
-    startDate: 'startDate'
+    startDate: 'startDate',
+    endDate: 'endDate'
   }
 });
 ```
@@ -33,6 +36,7 @@ The above snippet is the most basic setup for the Resource Planner, given that `
     title: 'Some title',
     resource: 'Some resource',
     startDate: '2019/02/23',
+    endDate: '2019/02/28',
   },
   ...
 ]
