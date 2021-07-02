@@ -1,12 +1,16 @@
 * [Home](/)
-    * Plumsail products
-        * [Dashboard Designer](plumsail/dashboard-designer.md)
-        * [SPForms Designer](plumsail/spforms-designer.md)
-    * jQuery Resource Planner Docs
-        * [Introduction](resource-planner/doc/introduction.md)
-        * [Get started](resource-planner/doc/get-started.md)
-        * [Options](resource-planner/doc/options.md)
-        * [Methods](resource-planner/doc/methods.md)
-    * Utilities
-        * [getListItems.js](utilities/get-list-items.md)
-        * [updateListItems.js](utilities/update-list-items.md)
+* Plumsail products
+  * [Dashboard Designer](plumsail/dashboard-designer)
+  * [SPForms Designer](plumsail/spforms-designer)
+* jQuery Resource Planner
+	* [Introduction](resource-planner/introduction)
+  * [Get started](resource-planner/get-started)
+  * [Options](resource-planner/options)
+  * [Methods](resource-planner/methods)
+* Projects
+	* [Availability (PSS)](projects/availability-pss)
+	* [Guard List (PSS)](projects/guard-list-pss)
+	* [Well Planning Management (Archer)](projects/wpm-archer)
+* Internal Tools
+  * [getListItems.js](internal-tools/get-list-items)
+  * [updateListItems.js](internal-tools/update-list-items)
