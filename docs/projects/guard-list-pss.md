@@ -10,7 +10,7 @@ Resources are stored in the root page SiteAssets in a folder called GuardList ([
 - style.css 
 - index.html 
 
-Other resources are referenced in the index.html 
+Other resources are referenced in the index.html.
 
 ## Third-party tools
 - jQuery ([link](https://jquery.com/))
